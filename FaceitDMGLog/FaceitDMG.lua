@@ -85,7 +85,7 @@ callbacks.Register("FireGameEvent", "EventHook", function(e)
                 local hitsTaken = damageInfo.hitsTaken or 0
 
                 if player:GetTeamNumber() ~= localPlayer:GetTeamNumber() then
-                    local message = string.format("\04To: [%d fmg / %d hits] - From: [%d dmg / %d hits] - %s (%d hp)", damageDealt, hitsDealt, damageTaken, hitsTaken, playerName, playerHealth)
+                    local message = string.format("\04To: [%d dmg / %d hits] - From: [%d dmg / %d hits] - %s (%d hp)", damageDealt, hitsDealt, damageTaken, hitsTaken, playerName, playerHealth)
                     ChatPrint(message)
                 end
             end
