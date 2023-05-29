@@ -1,6 +1,6 @@
 local versionURL = "https://raw.githubusercontent.com/ArtzHarvest/AimwareLuas/main/Updater/versions.txt"
 
-local localVersion = "1.0"
+local localVersion = "1.1"
 
 local function downloadVersion()
     http.Get(versionURL, function(content)
@@ -25,4 +25,4 @@ end
 
 downloadVersion()
 
---this is version 1.0
+--this is version 1.1
