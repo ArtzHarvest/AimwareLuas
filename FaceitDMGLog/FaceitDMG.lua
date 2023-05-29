@@ -27,7 +27,7 @@ end
 
 
 --updater by m0nsterJ
-local local_version = "1.0"
+local local_version = "1.1"
 ---@diagnostic disable-next-line: undefined-global
 local local_script_name = GetScriptName()
 local github_version_url = "https://raw.githubusercontent.com/ArtzHarvest/AimwareLuas/main/FaceitDMGLog/versions.txt"
