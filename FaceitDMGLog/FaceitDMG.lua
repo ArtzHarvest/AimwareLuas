@@ -32,7 +32,7 @@ local local_version = "1.1"
 local local_script_name = GetScriptName()
 local github_version_url = "https://raw.githubusercontent.com/ArtzHarvest/AimwareLuas/main/FaceitDMGLog/versions.txt"
 local github_version = http.Get(github_version_url)
-local github_source_url = "https://raw.githubusercontent.com/ArtzHarvest/AimwareLuas/main/FaceitDMGLog/GithubUpdater.lua"
+local github_source_url = "https://raw.githubusercontent.com/ArtzHarvest/AimwareLuas/main/FaceitDMGLog/FaceitDMG.lua"
 
 if local_version ~= tostring(github_version) then
     print("Now updating " ..local_script_name)
