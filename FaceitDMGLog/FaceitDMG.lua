@@ -1,31 +1,3 @@
---took ffi funktions from FFIChatVoteReveal.lua
-local CHudChat_Printf_Index = 27
-local ChatPrefix = "\02[\07AW\02] "
-
-local function FindHudElement(name)
-    local m_Table = mem.FindPattern("client.dll", "B9 ?? ?? ?? ?? 68 ?? ?? ?? ?? E8 ?? ?? ?? ?? 89 46 24")
-    local m_Function = mem.FindPattern("client.dll", "55 8B EC 53 8B 5D 08 56 57 8B F9 33 F6 39")
-
-    if m_Table ~= nil and m_Function ~= nil then
-        return ffi.cast("void*(__thiscall*)(void*, const char*)", m_Function)(ffi.cast("void**", m_Table + 0x1)[0], name)
-    end
-
-    return nil
-end
-
-local CHudChat = FindHudElement("CHudChat")
-if CHudChat == nil then
-    error("CHudChat is nullptr.")
-end
-
-local CHudChat_Printf = ffi.cast("void(__cdecl*)(void*, int, int, const char*, ...)", ffi.cast("void***", CHudChat)[0][CHudChat_Printf_Index])
-
-local function ChatPrint(msg)
-    CHudChat_Printf(CHudChat, 0, 0, " " .. ChatPrefix .. msg)
-end
-
-
-
 --updater by m0nsterJ
 local local_version = "1.1"
 ---@diagnostic disable-next-line: undefined-global
@@ -45,7 +17,27 @@ if local_version ~= tostring(github_version) then
     UnloadScript(local_script_name)
 end
 
+--took ffi funktions from FFIChatVoteReveal.lua
+local CHudChat_Printf_Index = 27
+local ChatPrefix = "\02[\07AW\02] "
+local function FindHudElement(name)
+    local m_Table = mem.FindPattern("client.dll", "B9 ?? ?? ?? ?? 68 ?? ?? ?? ?? E8 ?? ?? ?? ?? 89 46 24")
+    local m_Function = mem.FindPattern("client.dll", "55 8B EC 53 8B 5D 08 56 57 8B F9 33 F6 39")
 
+    if m_Table ~= nil and m_Function ~= nil then
+        return ffi.cast("void*(__thiscall*)(void*, const char*)", m_Function)(ffi.cast("void**", m_Table + 0x1)[0], name)
+    end
+
+    return nil
+end
+local CHudChat = FindHudElement("CHudChat")
+if CHudChat == nil then
+    error("CHudChat is nullptr.")
+end
+local CHudChat_Printf = ffi.cast("void(__cdecl*)(void*, int, int, const char*, ...)", ffi.cast("void***", CHudChat)[0][CHudChat_Printf_Index])
+local function ChatPrint(msg)
+    CHudChat_Printf(CHudChat, 0, 0, " " .. ChatPrefix .. msg)
+end
 
 -- Created by ArtzHarvest - https://aimware.net/forum/user/484354
 local playerDamage = {}
