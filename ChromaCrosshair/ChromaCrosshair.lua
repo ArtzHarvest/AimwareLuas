@@ -1,6 +1,11 @@
 -- Created by ArtzHarvest - https://aimware.net/forum/user/484354
 
 callbacks.Register("Draw", function()
+    local lp = entities.GetLocalPlayer()
+    if not lp:IsAlive() then return end
+
+    client.Command("cl_crosshaircolor 5", true);
+
     local maxColorValue = 255
     local speed = 1
 
@@ -10,9 +15,7 @@ callbacks.Register("Draw", function()
         local g = math.floor(math.sin(globals.RealTime() * speed + 2) * 127 + 128)
         local b = math.floor(math.sin(globals.RealTime() * speed + 4) * 127 + 128)
 
-        client.SetConVar("cl_crosshaircolor_r", r, true)
-        client.SetConVar("cl_crosshaircolor_g", g, true)
-        client.SetConVar("cl_crosshaircolor_b", b, true)
+		client.Command("cl_crosshaircolor_g "..g..";cl_crosshaircolor_r "..r..";cl_crosshaircolor_b "..b, true);
 
         counter = counter + 1
     end
